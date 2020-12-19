@@ -3,7 +3,7 @@ name = "beets-romanize"
 version = "0.1.0"
 description = "Beets plugin to transliterate hiragana, katakana, and kanji into romaji."
 authors = ["Eric Zhao <21zhaoe@protonmail.com>"]
-license = "GPL-3.0"
+license = "GPL-3.0-or-later"
 
 packages = [
   { include = "beetsplug" }
