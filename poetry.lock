@@ -51,15 +51,17 @@ six = ">=1.9"
 unidecode = "*"
 
 [[package]]
-name = "dill"
-version = "0.3.3"
-description = "serialize all of python"
+name = "cutlet"
+version = "0.1.15"
+description = "Romaji converter"
 category = "main"
 optional = false
-python-versions = ">=2.6, !=3.0.*"
+python-versions = ">=3.5"
 
-[package.extras]
-graph = ["objgraph (>=1.7.2)"]
+[package.dependencies]
+fugashi = "*"
+jaconv = "*"
+mojimoji = "*"
 
 [[package]]
 name = "flake8"
@@ -79,24 +81,40 @@ version = "*"
 python = "<3.8"
 
 [[package]]
-name = "importlib-metadata"
-version = "3.3.0"
-description = "Read metadata from Python packages"
+name = "fugashi"
+version = "1.0.5"
+description = "A Cython MeCab wrapper for fast, pythonic Japanese tokenization."
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.5"
+
+[package.extras]
+unidic = ["unidic"]
+unidic-lite = ["unidic-lite"]
+
+[[package]]
+name = "importlib-metadata"
+version = "2.1.1"
+description = "Read metadata from Python packages"
+category = "dev"
+optional = false
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 marker = "python_version < \"3.8\""
 
 [package.extras]
-docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
-testing = ["pytest (>=3.5,<3.7.3 || >3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pytest-cov", "jaraco.test (>=3.2.0)", "packaging", "pep517", "pyfakefs", "flufl.flake8", "pytest-black (>=0.3.7)", "pytest-mypy", "importlib-resources (>=1.3)"]
+docs = ["sphinx", "rst.linker"]
+testing = ["packaging", "pep517", "unittest2", "importlib-resources (>=1.3)"]
 
 [package.dependencies]
 zipp = ">=0.5"
 
-[package.dependencies.typing-extensions]
-version = ">=3.6.4"
-python = "<3.8"
+[[package]]
+name = "jaconv"
+version = "0.2.4"
+description = "Pure-Python Japanese character interconverter for Hiragana, Katakana, Hankaku and Zenkaku"
+category = "main"
+optional = false
+python-versions = "*"
 
 [[package]]
 name = "jellyfish"
@@ -107,25 +125,18 @@ optional = false
 python-versions = ">3.4"
 
 [[package]]
-name = "klepto"
-version = "0.2.0"
-description = "persistent caching to memory, disk, or database"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.extras]
-archives = ["h5py (>=2.8.0)", "pandas (>=0.17.0)", "sqlalchemy (>=0.8.4)"]
-
-[package.dependencies]
-dill = ">=0.3.3"
-pox = ">=0.2.9"
-
-[[package]]
 name = "mccabe"
 version = "0.6.1"
 description = "McCabe checker, plugin for flake8"
 category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "mojimoji"
+version = "0.0.11"
+description = "A fast converter between Japanese hankaku and zenkaku characters"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -154,14 +165,6 @@ optional = false
 python-versions = ">=3.5, <4"
 
 [[package]]
-name = "pox"
-version = "0.2.9"
-description = "utilities for filesystem exploration and automated builds"
-category = "main"
-optional = false
-python-versions = "*"
-
-[[package]]
 name = "pycodestyle"
 version = "2.6.0"
 description = "Python style guide checker"
@@ -176,26 +179,6 @@ description = "passive checker of Python programs"
 category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-
-[[package]]
-name = "pykakasi"
-version = "2.0.4"
-description = "Python implementation of kakasi - kana kanji simple inversion library"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.extras]
-check = ["mypy (0.770)", "mypy-extensions (0.4.3)", "docutils", "check-manifest", "flake8", "readme-renderer", "pygments", "isort", "twine"]
-docs = ["sphinx (>=1.8)", "sphinx-intl", "sphinx-py3doc-enhanced-theme", "sphinx-rtd-theme"]
-test = ["pytest", "pytest-pep8", "pytest-cov", "coverage (>=5.2)"]
-
-[package.dependencies]
-klepto = "*"
-
-[package.dependencies.importlib-metadata]
-version = "*"
-python = "<3.8"
 
 [[package]]
 name = "pyyaml"
@@ -222,15 +205,6 @@ optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
-name = "typing-extensions"
-version = "3.7.4.3"
-description = "Backported and Experimental Type Hints for Python 3.5+"
-category = "main"
-optional = false
-python-versions = "*"
-marker = "python_version < \"3.8\""
-
-[[package]]
 name = "unidecode"
 version = "1.1.1"
 description = "ASCII transliterations of Unicode text"
@@ -240,21 +214,21 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [[package]]
 name = "zipp"
-version = "3.4.0"
+version = "1.2.0"
 description = "Backport of pathlib-compatible object wrapper for zip files"
-category = "main"
+category = "dev"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=2.7"
 marker = "python_version < \"3.8\""
 
 [package.extras]
 docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
-testing = ["pytest (>=3.5,<3.7.3 || >3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pytest-cov", "jaraco.test (>=3.2.0)", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy"]
+testing = ["pathlib2", "unittest2", "jaraco.itertools", "func-timeout"]
 
 [metadata]
 lock-version = "1.0"
-python-versions = "^3.6"
-content-hash = "6c9d6bc7f361311f73cc047aabd3569c4dcdff5d0464015dbf6a0149ccfa8dd8"
+python-versions = "^3.5"
+content-hash = "73853a8e2681d059c928084753c55c25aa206fa2019a2cf2a79242cb88a1b9f4"
 
 [metadata.files]
 autopep8 = [
@@ -263,17 +237,37 @@ autopep8 = [
 beets = [
     {file = "beets-1.4.9.tar.gz", hash = "sha256:d29b432cab0c80947b5229f548762948c4dd4a430e5d02760bfeb95da3cc8054"},
 ]
-dill = [
-    {file = "dill-0.3.3-py2.py3-none-any.whl", hash = "sha256:78370261be6ea49037ace8c17e0b7dd06d0393af6513cc23f9b222d9367ce389"},
-    {file = "dill-0.3.3.zip", hash = "sha256:efb7f6cb65dba7087c1e111bb5390291ba3616741f96840bfc75792a1a9b5ded"},
+cutlet = [
+    {file = "cutlet-0.1.15.tar.gz", hash = "sha256:661f64f502ed96323d901ec1424a0d295587170c19325d2ea47973a65ac08b52"},
 ]
 flake8 = [
     {file = "flake8-3.8.4-py2.py3-none-any.whl", hash = "sha256:749dbbd6bfd0cf1318af27bf97a14e28e5ff548ef8e5b1566ccfb25a11e7c839"},
     {file = "flake8-3.8.4.tar.gz", hash = "sha256:aadae8761ec651813c24be05c6f7b4680857ef6afaae4651a4eccaef97ce6c3b"},
 ]
+fugashi = [
+    {file = "fugashi-1.0.5-cp35-cp35m-macosx_10_14_x86_64.whl", hash = "sha256:de7a304a00c1540aa8ef0a078be64d42ffe3f5c00788698fc4e38b7646788357"},
+    {file = "fugashi-1.0.5-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:61b38e645ddaa69d825f4b42ba4cbaec1bf00dfc9d9ed6eb53e16d4e20b12f6e"},
+    {file = "fugashi-1.0.5-cp35-cp35m-win_amd64.whl", hash = "sha256:657ff954f3e8b2a28b7e1d4b923d2fe24d2e38932215b04d45db438e28539b78"},
+    {file = "fugashi-1.0.5-cp36-cp36m-macosx_10_14_x86_64.whl", hash = "sha256:985e11859404a07075a547f53987c5ea15784daa935f1d896c0521441b9877d8"},
+    {file = "fugashi-1.0.5-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:1ca36bf656a1c7186aa15dd8672430ac672503ea8c8469e84b183019c3119249"},
+    {file = "fugashi-1.0.5-cp36-cp36m-win_amd64.whl", hash = "sha256:725eee67b50c50fefa99cdd2be565c109ceaacacbbc7c69f1a24dd84b77cc611"},
+    {file = "fugashi-1.0.5-cp37-cp37m-macosx_10_14_x86_64.whl", hash = "sha256:b98b4c4bb44bbbc1cfc64b28d5cabe91b501bf80374da1108ab30f9639ef37ee"},
+    {file = "fugashi-1.0.5-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:d88722bfbd3b5ddfa84dec69a67e0db2d411ab7ba158a25de2793c8248047ad7"},
+    {file = "fugashi-1.0.5-cp37-cp37m-win_amd64.whl", hash = "sha256:c6cff23d44bb8038c7a1a915aa0c8e8f41268b150d510d8cf1956c02dd4d1d82"},
+    {file = "fugashi-1.0.5-cp38-cp38-macosx_10_14_x86_64.whl", hash = "sha256:6b8e28e4f6d2f899e8bca40281056c27f30677db8cbf2b649cd4190109bec59a"},
+    {file = "fugashi-1.0.5-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:38f2a966ec6fe3016648c45c0ab7cf30048cf6d518a845ff7ccec23d844f323d"},
+    {file = "fugashi-1.0.5-cp38-cp38-win_amd64.whl", hash = "sha256:fce3eb96ab1e875307ebb3b4328001c5501b5b12f23b3ee915c3c1fe33cc0cd3"},
+    {file = "fugashi-1.0.5-cp39-cp39-macosx_10_14_x86_64.whl", hash = "sha256:19cc729c7bc66be21423811ca282db0b5536a0e4eeeac3c584e5d2f83c83f122"},
+    {file = "fugashi-1.0.5-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:d0691b905171c2119af6fc5321a30291bcd48be12890e9e906b4a67999fea599"},
+    {file = "fugashi-1.0.5-cp39-cp39-win_amd64.whl", hash = "sha256:7f5b5ebd1933518d85fb1fc76c6f9a02a07b61887130735816f09d7be6d5320d"},
+    {file = "fugashi-1.0.5.tar.gz", hash = "sha256:150d353dd8aa863da6ae56c03ab21135c6541992af82a005279042b687c69d63"},
+]
 importlib-metadata = [
-    {file = "importlib_metadata-3.3.0-py3-none-any.whl", hash = "sha256:bf792d480abbd5eda85794e4afb09dd538393f7d6e6ffef6e9f03d2014cf9450"},
-    {file = "importlib_metadata-3.3.0.tar.gz", hash = "sha256:5c5a2720817414a6c41f0a49993908068243ae02c1635a228126519b509c8aed"},
+    {file = "importlib_metadata-2.1.1-py2.py3-none-any.whl", hash = "sha256:c2d6341ff566f609e89a2acb2db190e5e1d23d5409d6cc8d2fe34d72443876d4"},
+    {file = "importlib_metadata-2.1.1.tar.gz", hash = "sha256:b8de9eff2b35fb037368f28a7df1df4e6436f578fa74423505b6c6a778d5b5dd"},
+]
+jaconv = [
+    {file = "jaconv-0.2.4.tar.gz", hash = "sha256:2ccdf768da20d55f30e8801e5e2e27783aae1bb29b890e503e1124134d6d09c9"},
 ]
 jellyfish = [
     {file = "jellyfish-0.8.2-cp35-cp35m-manylinux2014_x86_64.whl", hash = "sha256:f5c7fd1b02edf86135ed005ba8715ed9496d268e3d77e6428445689a441c4c64"},
@@ -282,13 +276,24 @@ jellyfish = [
     {file = "jellyfish-0.8.2-cp38-cp38-manylinux2014_x86_64.whl", hash = "sha256:288727bac0cef5817640d1d0d3655dabb9906d1f7b3e31eb1bd0b005bdf0eaf2"},
     {file = "jellyfish-0.8.2.tar.gz", hash = "sha256:a499741401512d05bbd3556e448e960bc908eba3879fb73d450e8e91566a030b"},
 ]
-klepto = [
-    {file = "klepto-0.2.0-py2.py3-none-any.whl", hash = "sha256:990f2cbc39a44765d5a438b63094543ebfdbd72b45e940e4188e8e73c3f854bd"},
-    {file = "klepto-0.2.0.zip", hash = "sha256:8030f76c9ba147ac14178792180409d027cda159eecd7d2f7cda2dd4e0ba51a2"},
-]
 mccabe = [
     {file = "mccabe-0.6.1-py2.py3-none-any.whl", hash = "sha256:ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42"},
     {file = "mccabe-0.6.1.tar.gz", hash = "sha256:dd8d182285a0fe56bace7f45b5e7d1a6ebcbf524e8f3bd87eb0f125271b8831f"},
+]
+mojimoji = [
+    {file = "mojimoji-0.0.11-cp35-cp35m-macosx_10_14_x86_64.whl", hash = "sha256:b86ee36240e77a414f796630cf3c80acef4e9528277769d1851d00b94af1cc98"},
+    {file = "mojimoji-0.0.11-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:3d3756f60754ee95847f419f48246a68271d9024c5296d298054229403804002"},
+    {file = "mojimoji-0.0.11-cp35-cp35m-win_amd64.whl", hash = "sha256:e257176fe55332ac5dc69735270840b36738a82f1dda3383758a6f36b5918fb6"},
+    {file = "mojimoji-0.0.11-cp36-cp36m-macosx_10_14_x86_64.whl", hash = "sha256:ece991b6529dddb91ae5035dcf3b62b486af675d4ec94fc3ecf7872b66f3df88"},
+    {file = "mojimoji-0.0.11-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:b7a1fe5726ad7036b096d44e7d014ceac174aec718199e19c6c6d1c2a757f6b9"},
+    {file = "mojimoji-0.0.11-cp36-cp36m-win_amd64.whl", hash = "sha256:ae2fcb9fa35f5890ba888780c9d445074717ef988c3171a058f002cd0f3933f4"},
+    {file = "mojimoji-0.0.11-cp37-cp37m-macosx_10_14_x86_64.whl", hash = "sha256:e551bb3be777643e2e1f7bc40db4d57baedaa6dac6c7875d9a926ffe66b67fb1"},
+    {file = "mojimoji-0.0.11-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:642c5e8642fa53c9556cd4c880e09438786dd955c32c7ce5fa2693e16914cdb6"},
+    {file = "mojimoji-0.0.11-cp37-cp37m-win_amd64.whl", hash = "sha256:029c5d2646c8ab36bef61abe26ed6bc698f7ffb6a744d82fafd86e233d6669a2"},
+    {file = "mojimoji-0.0.11-cp38-cp38-macosx_10_14_x86_64.whl", hash = "sha256:2fb18323ffae39391d77c77b27ed675cbf6e49e10f884ceaf8399be7ca7e0dc5"},
+    {file = "mojimoji-0.0.11-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:ea9c3d0c37ae7a8e494cb9681dae404de4599d4218e5b5d13c009ab1856d6409"},
+    {file = "mojimoji-0.0.11-cp38-cp38-win_amd64.whl", hash = "sha256:304681e2d99db69c552e1e36992cb41b967b46abd1720c1826f9dec678491d56"},
+    {file = "mojimoji-0.0.11.tar.gz", hash = "sha256:adef094e1bfd961e40c1fbd2d4664da1be2426d5b31884e27394226af15d50b5"},
 ]
 munkres = [
     {file = "munkres-1.1.4-py2.py3-none-any.whl", hash = "sha256:6b01867d4a8480d865aea2326e4b8f7c46431e9e55b4a2e32d989307d7bced2a"},
@@ -302,10 +307,6 @@ mutagen = [
     {file = "mutagen-1.45.1-py3-none-any.whl", hash = "sha256:9c9f243fcec7f410f138cb12c21c84c64fde4195481a30c9bfb05b5f003adfed"},
     {file = "mutagen-1.45.1.tar.gz", hash = "sha256:6397602efb3c2d7baebd2166ed85731ae1c1d475abca22090b7141ff5034b3e1"},
 ]
-pox = [
-    {file = "pox-0.2.9-py2.py3-none-any.whl", hash = "sha256:013eb9e01e9a0670da881894925d73b2d4b32343471b22fa8c41e19e8b3f6367"},
-    {file = "pox-0.2.9.zip", hash = "sha256:f08b5453edf94fd6fdb28e043658cdd6151d5fd8384066a24fad8d4bd7e637c0"},
-]
 pycodestyle = [
     {file = "pycodestyle-2.6.0-py2.py3-none-any.whl", hash = "sha256:2295e7b2f6b5bd100585ebcb1f616591b652db8a741695b3d8f5d28bdc934367"},
     {file = "pycodestyle-2.6.0.tar.gz", hash = "sha256:c58a7d2815e0e8d7972bf1803331fb0152f867bd89adf8a01dfd55085434192e"},
@@ -313,10 +314,6 @@ pycodestyle = [
 pyflakes = [
     {file = "pyflakes-2.2.0-py2.py3-none-any.whl", hash = "sha256:0d94e0e05a19e57a99444b6ddcf9a6eb2e5c68d3ca1e98e90707af8152c90a92"},
     {file = "pyflakes-2.2.0.tar.gz", hash = "sha256:35b2d75ee967ea93b55750aa9edbbf72813e06a66ba54438df2cfac9e3c27fc8"},
-]
-pykakasi = [
-    {file = "pykakasi-2.0.4-py3-none-any.whl", hash = "sha256:e0bf25a0fc31db3d7c3b0dd460c7e84eaf791e47a680e03b3059891e4d54bb86"},
-    {file = "pykakasi-2.0.4.tar.gz", hash = "sha256:bb29480ae0a99dd4ff955f4c5753077e94717b3119a89781a4e05f48699c4ad2"},
 ]
 pyyaml = [
     {file = "PyYAML-5.3.1-cp27-cp27m-win32.whl", hash = "sha256:74809a57b329d6cc0fdccee6318f44b9b8649961fa73144a98735b0aaf029f1f"},
@@ -341,16 +338,11 @@ toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
     {file = "toml-0.10.2.tar.gz", hash = "sha256:b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"},
 ]
-typing-extensions = [
-    {file = "typing_extensions-3.7.4.3-py2-none-any.whl", hash = "sha256:dafc7639cde7f1b6e1acc0f457842a83e722ccca8eef5270af2d74792619a89f"},
-    {file = "typing_extensions-3.7.4.3-py3-none-any.whl", hash = "sha256:7cb407020f00f7bfc3cb3e7881628838e69d8f3fcab2f64742a5e76b2f841918"},
-    {file = "typing_extensions-3.7.4.3.tar.gz", hash = "sha256:99d4073b617d30288f569d3f13d2bd7548c3a7e4c8de87db09a9d29bb3a4a60c"},
-]
 unidecode = [
     {file = "Unidecode-1.1.1-py2.py3-none-any.whl", hash = "sha256:1d7a042116536098d05d599ef2b8616759f02985c85b4fef50c78a5aaf10822a"},
     {file = "Unidecode-1.1.1.tar.gz", hash = "sha256:2b6aab710c2a1647e928e36d69c21e76b453cd455f4e2621000e54b2a9b8cce8"},
 ]
 zipp = [
-    {file = "zipp-3.4.0-py3-none-any.whl", hash = "sha256:102c24ef8f171fd729d46599845e95c7ab894a4cf45f5de11a44cc7444fb1108"},
-    {file = "zipp-3.4.0.tar.gz", hash = "sha256:ed5eee1974372595f9e416cc7bbeeb12335201d8081ca8a0743c954d4446e5cb"},
+    {file = "zipp-1.2.0-py2.py3-none-any.whl", hash = "sha256:e0d9e63797e483a30d27e09fffd308c59a700d365ec34e93cc100844168bf921"},
+    {file = "zipp-1.2.0.tar.gz", hash = "sha256:c70410551488251b0fee67b460fb9a536af8d6f9f008ad10ac51f615b6a521b1"},
 ]
