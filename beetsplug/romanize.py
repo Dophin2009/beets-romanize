@@ -24,15 +24,15 @@ class RomanizePlugin(BeetsPlugin):
         self.template_funcs['nihon'] = self._nihon
 
     def _hepburn(self, text: str) -> str:
-        self._get_cutlet(self._katsu_hepburn, 'hepburn')
+        self._katsu_hepburn = self._get_cutlet(self._katsu_hepburn, 'hepburn')
         return self._katsu_hepburn.romaji(text)
 
     def _kunrei(self, text: str) -> str:
-        self._get_cutlet(self._katsu_kunrei, 'kunrei')
+        self._katsu_kunrei = self._get_cutlet(self._katsu_kunrei, 'kunrei')
         return self._katsu_kunrei.romaji(text)
 
     def _nihon(self, text: str) -> str:
-        self._get_cutlet(self._katsu_nihon, 'nihon')
+        self._katsu_nihon = self._get_cutlet(self._katsu_nihon, 'nihon')
         return self._katsu_nihon.romaji(text)
 
     def _get_cutlet(self, katsu: Optional[Cutlet], ty: str):
